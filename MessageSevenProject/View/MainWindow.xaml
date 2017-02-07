@@ -1,0 +1,63 @@
+﻿<Controls:MetroWindow x:Class="MessageSevenProject.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:MessageSevenProject"
+        mc:Ignorable="d"
+        Title="View.MainWindow" Height="615.43" Width="1200.016" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Border BorderBrush="#FFECECEC" BorderThickness="1,1,1,5" Margin="70.953,212.88,74.954,31.629" CornerRadius="5">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.164,0.37" StartPoint="0.164,0">
+                    <GradientStop Color="White" Offset="0.196"/>
+                    <GradientStop Color="#FF20FFB7" Offset="0.189"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid Margin="0,-1">
+                <DataGrid ItemsSource="{Binding MasterData}" x:Name="dataGrid" AutoGenerateColumns="False" BorderBrush="#CCCFD3D4" BorderThickness="1" Margin="10,66.5,10,37.458" AlternationCount="2" AlternatingRowBackground="#FFEEEEEE" IsReadOnly="True" CanUserResizeRows="False" IsTextSearchEnabled="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="40"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80"/>
+                        <DataGridTextColumn Header="Last Updated" Binding="{Binding LastUpdated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="activity status" Binding="{Binding ActivityStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Business Risk Rating" Binding="{Binding BusinessRiskRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Information Risk Rating" Binding="{Binding InformationRiskRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Owner Email" Width="150" Binding="{Binding OwnerMail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Approver Email" Width="150" Binding="{Binding ApproverMail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Type" Width="80" Binding="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label x:Name="label" Content="ALL APPLICATIONS" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>
+                <Label x:Name="label1" Content="Total Items :" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,6.498" RenderTransformOrigin="1.265,6.611" Foreground="#FF615C5C" FontWeight="Bold"/>
+                <Label x:Name="label6" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,35.54,0,0" FontWeight="Bold"/>
+                <Label x:Name="label7" Content="|" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114.353,35.54,0,0" Foreground="#FFC5C0C0"/>
+                <Label x:Name="label8" Content="None" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="62.39,35.54,0,0" Width="46.963"/>
+                <TextBlock x:Name="te" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding MasterData.Count}" VerticalAlignment="Bottom" Margin="93.893,0,0,11.498"/>
+            </Grid>
+        </Border>
+        <Rectangle Fill="#FF09C6E4" Height="133" Margin="0,60.88,74.954,0" Stroke="White" VerticalAlignment="Top" HorizontalAlignment="Right" Width="128"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Applications" VerticalAlignment="Top" Margin="0,121.38,102.056,0" RenderTransformOrigin="0.456,0.195" Foreground="White" FontWeight="Bold"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding Path=MasterData.Count,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Margin="0,100.42,140.556,0" FontWeight="Bold" Foreground="White"/>
+        <Border BorderBrush="#FFE6E5E5" BorderThickness="1,1,1,3" Height="133" Margin="70.953,60.88,229.016,0" VerticalAlignment="Top" CornerRadius="3">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.355,0.723" StartPoint="0.355,0.121">
+                    <GradientStop Color="#FF20FFB7" Offset="0.091"/>
+                    <GradientStop Color="White" Offset="0.112"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Label x:Name="label5" Content="Value" HorizontalAlignment="Right" Margin="0,43.013,363.397,60.027" FontWeight="Bold" d:LayoutOverrides="Height"/>
+                <Label x:Name="label2" Content="Filter" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
+                <Label x:Name="label3" Content="Attributes" HorizontalAlignment="Left" Margin="10,41.663,0,61.377" FontWeight="Bold" d:LayoutOverrides="Height"/>
+                <ComboBox ItemsSource="{Binding _Attributes}" x:Name="comboBox" HorizontalAlignment="Left" Width="224" Margin="10,0,0,30.377" VerticalAlignment="Bottom"/>
+                <Label x:Name="label4" Content="Operator" HorizontalAlignment="Left" Margin="248.33,41.663,0,61.377" FontWeight="Bold" RenderTransformOrigin="0.503,-0.034" d:LayoutOverrides="Height"/>
+                <ComboBox ItemsSource="{Binding _Operators}" x:Name="comboBox1" Margin="248.33,0,417.717,30.377" Width="224" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Margin="0,0,220.117,30.377" HorizontalAlignment="Right" Width="184" VerticalAlignment="Bottom"/>
+                <Button x:Name="button" Content="Clear" HorizontalAlignment="Right" Width="93.667" Margin="0,0,10,30.377" VerticalAlignment="Bottom"/>
+                <Button x:Name="button_Copy" Content="Submit" HorizontalAlignment="Right" Width="93.667" Margin="0,0,115.45,30.377" VerticalAlignment="Bottom"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Controls:MetroWindow>
