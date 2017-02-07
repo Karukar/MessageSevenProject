@@ -14,23 +14,23 @@ namespace MessageSevenProject.Model
         public enum Attributes
         {
 
-            [Display(Name = "ID")]
+            [Description("ID")]
             Id,
-            [Display(Name = "Name")]
+            [Description("Name")]
             Name ,
-            [Display(Name = "Last Updated")]
+            [Description("Last Updated")]
             LastUpdated,
-            [Display(Name = "Activity Status")]
+            [Description("Activity Status")]
             ActivityStatus,
-            [Display(Name = "Business Risk Rating")]
+            [Description("Business Risk Rating")]
             BusinessRiskRating,
-            [Display(Name = "Information Risk Rating")]
+            [Description("Information Risk Rating")]
             InformationRiskRating,
-            [Display(Name = "Owner Mail")]
+            [Description("Owner Mail")]
             OwnerMail,
-            [Display(Name = "Approver Mail")]
+            [Description("Approver Mail")]
             ApproverMail,
-            [Display(Name = "Application Type")]
+            [Description("Application Type")]
             Type 
     }
 

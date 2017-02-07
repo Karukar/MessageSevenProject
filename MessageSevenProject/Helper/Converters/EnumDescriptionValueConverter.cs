@@ -24,8 +24,9 @@ namespace MessageSevenProject.Helper.Converters
             }
             else
             {
-                DisplayNameAttribute attrib = attribArray[0] as DisplayNameAttribute;
-                return attrib.DisplayName;
+                DescriptionAttribute attrib = attribArray[0] as DescriptionAttribute;
+                attrib = attribArray.OfType<DescriptionAttribute>().FirstOrDefault();
+                return attrib.Description.ToString();
 
             }
         }
