@@ -15,22 +15,8 @@ namespace MessageSevenProject.ViewModel
     {
         private IMessageSevenService Service;
         private ObservableCollection<Message> _MasterData;
+        private string _SelectedItem;
 
-        public IEnumerable<Attributes> _Attributes
-        {
-            get
-            {
-                return Enum.GetValues(typeof(Attributes)).Cast<Attributes>();
-            }
-        }
-
-        public IEnumerable<Operators> _Operators
-        {
-            get
-            {
-                return Enum.GetValues(typeof(Operators)).Cast<Operators>();
-            }
-        }
 
         public MainWindowViewModel(IMessageSevenService _Service)
         {
@@ -59,6 +45,19 @@ namespace MessageSevenProject.ViewModel
             set
             {
                 SetProperty(ref _MasterData, value);
+            }
+        }
+
+        public string SelectedItem
+        {
+            get
+            {
+                return _SelectedItem;
+            }
+
+            set
+            {
+                SetProperty(ref _SelectedItem, value);
             }
         }
     }
