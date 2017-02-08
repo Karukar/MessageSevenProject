@@ -36,8 +36,10 @@ namespace MessageSevenProject.Model
 
         public enum Operators
         {
-           Equals,
-           Contains
+            [Description("=")]
+            Equals,
+            [Description("Contains")]
+            Contains
         }
     }
 }
