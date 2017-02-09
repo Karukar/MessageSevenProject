@@ -72,7 +72,7 @@
                 <Label x:Name="label5" Content="Value" HorizontalAlignment="Right" Margin="0,43.013,363.397,60.027" FontWeight="Bold" d:LayoutOverrides="Height"/>
                 <Label x:Name="label2" Content="Filter" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
                 <Label x:Name="label3" Content="Attributes" HorizontalAlignment="Left" Margin="10,41.663,0,61.377" FontWeight="Bold" d:LayoutOverrides="Height"/>
-                <ComboBox ItemsSource="{Binding Source={StaticResource MyEnumValues}}" SelectedItem="{Binding SelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="comboBox" HorizontalAlignment="Left" Width="224" Margin="10,0,0,32" VerticalAlignment="Bottom">
+                <ComboBox ItemsSource="{Binding Source={StaticResource MyEnumValues}}" SelectedItem="{Binding SelectedItemAttri,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="comboBox" HorizontalAlignment="Left" Width="224" Margin="10,0,0,32" VerticalAlignment="Bottom">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Converter={StaticResource EnumConv}}"/>
@@ -80,14 +80,14 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <Label x:Name="label4" Content="Operator" HorizontalAlignment="Left" Margin="248.33,41.663,0,61.377" FontWeight="Bold" RenderTransformOrigin="0.503,-0.034" d:LayoutOverrides="Height"/>
-                <ComboBox ItemsSource="{Binding Source={StaticResource MyEnumValues1}}" x:Name="comboBox1" Margin="248.33,0,417.717,30.377" Width="224" VerticalAlignment="Bottom">
+                <ComboBox ItemsSource="{Binding Source={StaticResource MyEnumValues1}}" SelectedItem="{Binding SelectedItemOper,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="comboBox1" Margin="248.33,0,417.717,30.377" Width="224" VerticalAlignment="Bottom">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Converter={StaticResource EnumConv}}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Margin="0,0,220.117,30.377" HorizontalAlignment="Right" Width="184" VerticalAlignment="Bottom"/>
+                <TextBox Text="{Binding EnumProbValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="textBox" Height="23" TextWrapping="Wrap" Margin="0,0,220.117,30.377" HorizontalAlignment="Right" Width="184" VerticalAlignment="Bottom"/>
                 <Button x:Name="button" Content="Clear" HorizontalAlignment="Right" Width="93.667" Margin="0,0,10,30.377" VerticalAlignment="Bottom"/>
                 <Button x:Name="button_Copy" Content="Submit" HorizontalAlignment="Right" Width="93.667" Margin="0,0,115.45,30.377" VerticalAlignment="Bottom"/>
             </Grid>

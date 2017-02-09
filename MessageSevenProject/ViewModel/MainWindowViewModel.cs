@@ -15,7 +15,9 @@ namespace MessageSevenProject.ViewModel
     {
         private IMessageSevenService Service;
         private ObservableCollection<Message> _MasterData;
-        private string _SelectedItem;
+        private string _SelectedItemAttri;
+        private string _SelectedItemOper;
+        private string _EnumProbValue;
 
 
         public MainWindowViewModel(IMessageSevenService _Service)
@@ -48,16 +50,42 @@ namespace MessageSevenProject.ViewModel
             }
         }
 
-        public string SelectedItem
+        public string SelectedItemAttri
         {
             get
             {
-                return _SelectedItem;
+                return _SelectedItemAttri;
             }
 
             set
             {
-                SetProperty(ref _SelectedItem, value);
+                SetProperty(ref _SelectedItemAttri, value);
+            }
+        }
+
+        public string SelectedItemOper
+        {
+            get
+            {
+                return _SelectedItemOper;
+            }
+
+            set
+            {
+                _SelectedItemOper = value;
+            }
+        }
+
+        public string EnumProbValue
+        {
+            get
+            {
+                return _EnumProbValue;
+            }
+
+            set
+            {
+                _EnumProbValue = value;
             }
         }
     }
