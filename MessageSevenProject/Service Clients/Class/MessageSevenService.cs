@@ -20,7 +20,8 @@ namespace MessageSevenProject.Service_Clients.Class
             {
                 Client.BaseAddress = new Uri("http://localhost:8080/");
                 Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("applications/json"));
-                HttpResponseMessage Req = Client.GetAsync("FindMessage/{Attrip}/"+ Attrib +"/" + Operat +"/" + value).Result;
+                string Cont = "MessageSevenService.svc/FindMessage/" + Attrib.ToString() + "/" + Operat.ToString() + "/" + value.ToString();
+                HttpResponseMessage Req = Client.GetAsync(Cont.ToString()).Result;
                 if(Req.EnsureSuccessStatusCode()!=null)
                 {
                     string json = Req.Content.ReadAsStringAsync().Result;
