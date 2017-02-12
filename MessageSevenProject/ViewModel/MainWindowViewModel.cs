@@ -1,4 +1,5 @@
-﻿using MessageSevenProject.Helper.ModelBase;
+﻿using MessageSevenProject.Helper.Commands;
+using MessageSevenProject.Helper.ModelBase;
 using MessageSevenProject.Model;
 using MessageSevenProject.Service_Clients.Interface;
 using System;
@@ -7,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using static MessageSevenProject.Model.Comman;
 
 namespace MessageSevenProject.ViewModel
@@ -18,7 +20,7 @@ namespace MessageSevenProject.ViewModel
         private string _SelectedItemAttri;
         private string _SelectedItemOper;
         private string _EnumProbValue;
-
+        private ICommand _FilterCommand;
 
         public MainWindowViewModel(IMessageSevenService _Service)
         {
@@ -34,6 +36,12 @@ namespace MessageSevenProject.ViewModel
         public void LoadData()
         {
             var d = Service.GeAllData();
+            MasterData = new ObservableCollection<Message>(d);
+        }
+
+        public void FindMasterData()
+        {
+            var d = Service.FindData(SelectedItemAttri, SelectedItemOper, EnumProbValue);
             MasterData = new ObservableCollection<Message>(d);
         }
 
@@ -86,6 +94,19 @@ namespace MessageSevenProject.ViewModel
             set
             {
                 _EnumProbValue = value;
+            }
+        }
+
+        public ICommand FilterCommand
+        {
+            get
+            {
+               if(_FilterCommand==null)
+                {
+                    _FilterCommand = new RelayCommand(p => FindMasterData(),
+                        p => { return !string.IsNullOrEmpty(SelectedItemAttri) && !string.IsNullOrEmpty(SelectedItemOper) && !string.IsNullOrEmpty(EnumProbValue); });
+                }
+                return _FilterCommand;
             }
         }
     }

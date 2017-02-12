@@ -15,7 +15,21 @@ namespace MessageSevenProject.Service_Clients.Class
         public IEnumerable<Message> FindData(string Attrib, string Operat, string value)
         {
 
-           throw new NotImplementedException();
+            List<Message> Data = new List<Message>();
+            using (HttpClient Client = new HttpClient())
+            {
+                Client.BaseAddress = new Uri("http://localhost:8080/");
+                Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("applications/json"));
+                HttpResponseMessage Req = Client.GetAsync("FindMessage/{Attrip}/"+ Attrib +"/" + Operat +"/" + value).Result;
+                if(Req.EnsureSuccessStatusCode()!=null)
+                {
+                    string json = Req.Content.ReadAsStringAsync().Result;
+                    var d = JsonConvert.DeserializeObject<Root>(json);
+                    Data = d.RootFindData;
+                }
+            }
+
+            return Data;
 
         }
 
@@ -32,7 +46,7 @@ namespace MessageSevenProject.Service_Clients.Class
                 {
                     string json = Req.Content.ReadAsStringAsync().Result;
                     var d= JsonConvert.DeserializeObject<Root>(json);
-                    Data = d.RootData;
+                    Data = d.RootAllData;
                 }
 
             }
@@ -44,6 +58,8 @@ namespace MessageSevenProject.Service_Clients.Class
     public class Root
     {
         [JsonProperty(PropertyName = "AllMessagesResult")]
-        public List<Message> RootData { get; set; }
+        public List<Message> RootAllData { get; set; }
+        [JsonProperty(PropertyName = "FindMessageResult")]
+        public List<Message> RootFindData { get; set; }
     }
 }
