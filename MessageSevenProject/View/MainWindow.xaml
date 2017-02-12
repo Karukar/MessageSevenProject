@@ -89,7 +89,7 @@
                 </ComboBox>
                 <TextBox Text="{Binding EnumProbValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="textBox" Height="23" TextWrapping="Wrap" Margin="0,0,220.117,30.377" HorizontalAlignment="Right" Width="184" VerticalAlignment="Bottom"/>
                 <Button x:Name="button" Content="Clear" HorizontalAlignment="Right" Width="93.667" Margin="0,0,10,30.377" VerticalAlignment="Bottom"/>
-                <Button x:Name="button_Copy" Content="Submit" HorizontalAlignment="Right" Width="93.667" Margin="0,0,115.45,30.377" VerticalAlignment="Bottom"/>
+                <Button Command="{Binding FilterCommand}" x:Name="button_Copy" Content="Submit" HorizontalAlignment="Right" Width="93.667" Margin="0,0,115.45,30.377" VerticalAlignment="Bottom"/>
             </Grid>
         </Border>
     </Grid>
