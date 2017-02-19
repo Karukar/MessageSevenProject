@@ -19,16 +19,16 @@ namespace MessageSevenProject.Helper.Commands
 
             if(execute==null)
             {
-                throw new ArgumentNullException("execute");
+                throw new ArgumentNullException(nameof(execute));
             }
 
             if(canexecute==null)
             {
-                throw new ArgumentNullException("canexecute");
+                throw new ArgumentNullException(nameof(canexecute));
             }
 
-            this._execute = execute;
-            this._canexecute = canexecute;
+            _execute = execute;
+            _canexecute = canexecute;
         }
 
         public event EventHandler CanExecuteChanged
