@@ -101,12 +101,10 @@ namespace MessageSevenProject.ViewModel
         {
             get
             {
-               if(_FilterCommand==null)
-                {
-                    _FilterCommand = new RelayCommand(p => FindMasterData(),
-                        p => { return !string.IsNullOrEmpty(SelectedItemAttri) && !string.IsNullOrEmpty(SelectedItemOper) && !string.IsNullOrEmpty(EnumProbValue); });
-                }
-                return _FilterCommand;
+                return _FilterCommand ?? (_FilterCommand = new RelayCommand(p => FindMasterData(),
+                           p =>
+                               !string.IsNullOrEmpty(SelectedItemAttri) && !string.IsNullOrEmpty(SelectedItemOper) &&
+                               !string.IsNullOrEmpty(EnumProbValue)));
             }
         }
     }

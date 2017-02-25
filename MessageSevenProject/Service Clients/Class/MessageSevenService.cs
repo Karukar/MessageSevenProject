@@ -12,47 +12,54 @@ namespace MessageSevenProject.Service_Clients.Class
 {
     public class MessageSevenService : IMessageSevenService
     {
-        public IEnumerable<Message> FindData(string Attrib, string Operat, string value)
+        public IEnumerable<Message> FindData(string attrib, string operat, string value)
         {
 
-            List<Message> Data = new List<Message>();
-            using (HttpClient Client = new HttpClient())
+            List<Message> data = new List<Message>();
+            data = NewMethod(attrib, operat, value, data);
+
+            return data;
+
+        }
+
+        private static List<Message> NewMethod(string attrib, string operat, string value, List<Message> data)
+        {
+            using (HttpClient client = new HttpClient())
             {
-                Client.BaseAddress = new Uri("http://localhost:8080/");
-                Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("applications/json"));
-                string Cont = "MessageSevenService.svc/FindMessage/" + Attrib.ToString() + "/" + Operat.ToString() + "/" + value.ToString();
-                HttpResponseMessage Req = Client.GetAsync(Cont.ToString()).Result;
-                if(Req.EnsureSuccessStatusCode()!=null)
+                client.BaseAddress = new Uri("http://localhost:8080/");
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("applications/json"));
+                string cont = "MessageSevenService.svc/FindMessage/" + attrib.ToString() + "/" + operat.ToString() + "/" + value.ToString();
+                HttpResponseMessage req = client.GetAsync(cont.ToString()).Result;
+                if (req.EnsureSuccessStatusCode() != null)
                 {
-                    string json = Req.Content.ReadAsStringAsync().Result;
+                    string json = req.Content.ReadAsStringAsync().Result;
                     var d = JsonConvert.DeserializeObject<Root>(json);
-                    Data = d.RootFindData;
+                    data = d.RootFindData;
                 }
             }
 
-            return Data;
-
+            return data;
         }
 
         public IEnumerable<Message> GeAllData()
         {
            
-            List<Message> Data = new List<Message>();
-            using (HttpClient Client = new HttpClient())
+            List<Message> data = new List<Message>();
+            using (HttpClient client = new HttpClient())
             {
-                Client.BaseAddress = new Uri("http://localhost:8080/");
-                Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("applications/json"));
-                HttpResponseMessage Req = Client.GetAsync("MessageSevenService.svc/AllMessage").Result;
-                if(Req.EnsureSuccessStatusCode()!=null)
+                client.BaseAddress = new Uri("http://localhost:8080/");
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("applications/json"));
+                HttpResponseMessage req = client.GetAsync("MessageSevenService.svc/AllMessage").Result;
+                if(req.EnsureSuccessStatusCode()!=null)
                 {
-                    string json = Req.Content.ReadAsStringAsync().Result;
+                    string json = req.Content.ReadAsStringAsync().Result;
                     var d= JsonConvert.DeserializeObject<Root>(json);
-                    Data = d.RootAllData;
+                    data = d.RootAllData;
                 }
 
             }
 
-            return Data;
+            return data;
         }
     }
 
